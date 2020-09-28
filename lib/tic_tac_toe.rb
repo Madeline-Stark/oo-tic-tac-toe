@@ -1,3 +1,5 @@
+require 'pry'
+
 # previous lesson has initialize, current player, turn count, display board
 # can start by copying those over
 # read the readme!
@@ -98,7 +100,60 @@ class TicTacToe
         end 
     end 
 
-   
+    def won? 
+        # hint: use WIN_COMBINATIONS to access elements of the @board array
+        # .find might also be helpful here
+
+        # will need to iterate through win combos 
+        # use find to return the first combo for which condition is true, nil if none are
+        WIN_COMBINATIONS.find do |combo|
+            # combo is an array of index numbers
+            # access one index number at a time to access that index of board
+            # compare and see if all equal/have same token
+            # need to make sure not all empty string by using position_taken too
+            position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
+        end
+    end
+
+    def full?
+        @board.all? do |el|
+            el != " "
+        end
+    end 
+
+    def draw? 
+        full? && !won?
+    end 
+
+    def over? 
+        won? || draw?
+    end 
+
+    def winner 
+        # won? returns the winning array of indexes, use one of them to access the winning token
+        won? ? @board[won?[0]] : nil
+    end 
+
+    def play 
+        # until the game is over
+        #     take turns
+        #   end
+        until over? 
+            turn 
+        end 
+           
+        #   if the game was won
+        if won?
+        #     congratulate the winner
+            puts "Congratulations #{winner}!"
+        #   else if the game was a draw
+        else
+        #     tell the players it ended in a draw
+            puts "Cat's Game!"
+        #   end
+        end 
+
+    end 
 
 
 end
