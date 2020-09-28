@@ -4,6 +4,14 @@
 
 # do as group: 
 # initialize, win combo, display board
+# briefly intro idea of recursion, just a method calling itself:
+# def add(sum, num)
+#     if num > 10
+#         num 
+#     else 
+#         add(sum, num)
+#     end
+# end
 
 # then break into groups, remind to reference readme
 
@@ -47,6 +55,50 @@ class TicTacToe
         # change index of @board array to that token
         @board[index] = token 
     end
+
+    def position_taken?(index)
+        # returns true/false based on whether the position on the board is already occupied
+        # @board[index] != " " ? true : false 
+        @board[index] != " " # already returns boolean
+    end
+
+    def valid_move?(index)
+       # @board[index] == " " #works, checks if empty and that is valid position
+       !position_taken?(index) && index.between?(0, 8) # want opposite of position_taken return value
+    end 
+
+    def turn_count 
+        # .count: If a block is given, counts the number of elements for which the block returns a true value.
+        @board.count {|x| x != " "}
+       # want to know how many turns have happened, so count filled spaces
+    end 
+
+    def current_player
+        turn_count.even? ? "X" : "O"
+    end 
+
+    def turn 
+        # ask for input
+        puts "Please enter a position: 1-9"
+        # get input
+        input = gets.strip # to eliminate white space
+        # translate input into index
+        input = input_to_index(input)
+        # if index is valid
+        if valid_move?(input)
+        # make the move for index
+            move(input, current_player)
+        # show the board
+            display_board
+        # else
+        else 
+        # ask for input again
+            turn 
+        # end
+        end 
+    end 
+
+   
 
 
 end
