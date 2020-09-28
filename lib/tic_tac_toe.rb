@@ -9,6 +9,9 @@
 
 class TicTacToe
 
+    # DON'T DELETE FIRST THREE
+    # in github link - tic tac toe starter code - share with students
+
     def initialize
         @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     end 
@@ -18,12 +21,12 @@ class TicTacToe
         # maybe give to them to save time?
         [0,1,2], # Top row
         [3,4,5],  # Middle row
-        [6, 7, 8],
-        [0, 3, 6], 
-        [1, 4, 7], 
-        [2, 5, 8],
-        [0, 4, 8], 
-        [2, 4, 6]
+        [6,7,8],
+        [0,3,6], 
+        [1,4,7], 
+        [2,5,8],
+        [0,4,8], 
+        [2,4,6]
     ]
 
     # copy from previous lesson
@@ -38,6 +41,11 @@ class TicTacToe
     def input_to_index(input)
         # just returning index number
         input.to_i - 1
+    end
+
+    def move(index, token="X")
+        # change index of @board array to that token
+        @board[index] = token 
     end
 
 
