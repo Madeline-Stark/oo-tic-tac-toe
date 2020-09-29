@@ -15,7 +15,7 @@ require 'pry'
 #     end
 # end
 
-# then break into groups, remind to reference readme
+# then break into groups, remind to reference readme, review pairing protocol
 
 class TicTacToe
 
